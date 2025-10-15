@@ -20,13 +20,10 @@ async function status(request, response) {
   const databaseOpenedConnectionsValue =
     databaseOpenedConnectionsResult.rows[0].count;
 
-  const queryResult = await database.query("SELECT 2+3 AS SUM;");
-
   response.status(200).json({
     updated_at: updatedAt,
     dependencies: {
       database: {
-        query: queryResult.rows[0].sum,
         version: databaseVersionValue,
         max_connections: parseInt(databaseMaxConnectionsValue),
         opened_connections: databaseOpenedConnectionsValue,
